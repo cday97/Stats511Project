@@ -36,51 +36,30 @@ tukey
 ```
 
 ```{r}
-weather <- crash %>% filter (weather_condition_id < 10) 
-
-weatherSummary <- weather %>% 
-  filter(crash_severity_id > 3) %>%
-  group_by(weather_condition_id) %>% 
-  summarize(mean = mean(crash_severity_id))
-
-lmmodel <- lm(crash_severity_id ~ weather_condition_id, data = weather)
-summary(lmmodel)
-ggplot(weatherSummary) + 
-  aes(x = weather_condition_id, y = mean) + 
-  #geom_point() + 
-  geom_smooth(method = 'lm') + 
-  geom_point()
-```
-
-
-```{r}
-totalSev <- crash %>% 
-  group_by(crash_severity_id) %>% 
-  summarize(sum = sum(crash_severity_id)) %>%
-  mutate(log = log(sum))
-
-
-pcttable <- function(events, name){
-  events %>%
-    group_by(mode) %>% 
-    summarise(cnt = n()) %>% 
-    mutate(pct = cnt / sum(cnt) * 100) %>%
-    mutate(model = name) %>%
-    select(-cnt)
-}
+totalSev <- crash %>%  filter(manner_collision_id != 89) %>%
+  group_by(crash_severity_id, manner_collision_id) %>% 
+  summarize(sum = sum(crash_severity_id))
 ```
 
 # Question
+Tommy
 
 # Study Design
+Tommy
+
 
 # Statistical Method
+Gillian
 
 # Issues
+Gillian
 
 # Numerical Results
+Chris
 
 # Inferential Conclusions
+Chris
+
 
 # Additional Discussion
-
+Tommy
