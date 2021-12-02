@@ -6,9 +6,15 @@ output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
 source("datamaker.R")
+source("crashprep.R")
 ```
+
+```{r build, message = FALSE, warning = FALSE}
+crash <- crashprep()
+```
+
 
 # Question
 
