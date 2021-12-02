@@ -11,8 +11,17 @@ source("datamaker.R")
 source("crashprep.R")
 ```
 
-```{r build, message = FALSE, warning = FALSE}
+```{r boxplot, message = FALSE, warning = FALSE}
 crash <- crashprep()
+severity <- buildSeverity(crash) %>% filter(manner_collision_id != 89)
+makeBoxPlot(severity)
+```
+
+```{r means, message = FALSE, warning = FALSE}
+severitySummary <- buildSeverity(crash) %>% 
+  group_by(collisionType) %>% 
+  summarize(mean = mean(crash_severity_id))
+severitySummary
 ```
 
 

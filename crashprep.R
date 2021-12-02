@@ -5,22 +5,13 @@ check_location <- function(df){
   df %>%
     select(crash_id = crash_id, 
            crash_datetime = crash_datetime, 
-           route = route, 
-           direction = route_direction, 
-           ramp_id = ramp_id, 
-           milepoint = milepoint, 
-           lat = lat, 
-           long = long, 
            crash_severity_id = crash_severity_id, 
            light_condition_id = light_condition_id, 
            weather_condition_id = weather_condition_id, 
            manner_collision_id = manner_collision_id,
            roadway_surf_condition_id = roadway_surf_condition_id,
            roadway_junct_feature_id = roadway_junct_feature_id, 
-           horizontal_alignment_id = horizontal_alignment_id,
-           vertical_alignment_id = vertical_alignment_id, 
-           roadway_contrib_circum_id = roadway_contrib_circum_id,
-           first_harmful_event_id = first_harmful_event_id)
+           roadway_contrib_circum_id = roadway_contrib_circum_id)
 }
 
 # Keeps the following columns from the vehicle file
