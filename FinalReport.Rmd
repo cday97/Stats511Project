@@ -7,24 +7,20 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+source("datamaker.R")
 ```
 
-## R Markdown
+# Question
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# Study Design
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+# Statistical Method
 
-```{r cars}
-summary(cars)
-```
+# Issues
 
-## Including Plots
+# Numerical Results
 
-You can also embed plots, for example:
+# Inferential Conclusions
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+# Additional Discussion
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
