@@ -1,5 +1,5 @@
 ---
-title: "Does Manner of Collison Correlate to Crash Severity"
+title: "What factors are strong indicators of severe vehicle crashes on Utah roads?"
 author: "Chris Day"
 date: "12/2/2021"
 output: pdf_document
@@ -24,6 +24,51 @@ severitySummary <- buildSeverity(crash) %>%
 severitySummary
 ```
 
+
+```{r}
+anovaModel <- aov(crash_severity_id ~ collisionType, data = severity)
+summary(anovaModel)
+```
+
+```{r tukeyTime, echo=FALSE, message=FALSE, warning=FALSE}
+tukey <- TukeyHSD(anovaModel)
+tukey
+```
+
+```{r}
+weather <- crash %>% filter (weather_condition_id < 10) 
+
+weatherSummary <- weather %>% 
+  filter(crash_severity_id > 3) %>%
+  group_by(weather_condition_id) %>% 
+  summarize(mean = mean(crash_severity_id))
+
+lmmodel <- lm(crash_severity_id ~ weather_condition_id, data = weather)
+summary(lmmodel)
+ggplot(weatherSummary) + 
+  aes(x = weather_condition_id, y = mean) + 
+  #geom_point() + 
+  geom_smooth(method = 'lm') + 
+  geom_point()
+```
+
+
+```{r}
+totalSev <- crash %>% 
+  group_by(crash_severity_id) %>% 
+  summarize(sum = sum(crash_severity_id)) %>%
+  mutate(log = log(sum))
+
+
+pcttable <- function(events, name){
+  events %>%
+    group_by(mode) %>% 
+    summarise(cnt = n()) %>% 
+    mutate(pct = cnt / sum(cnt) * 100) %>%
+    mutate(model = name) %>%
+    select(-cnt)
+}
+```
 
 # Question
 

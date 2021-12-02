@@ -19,6 +19,7 @@ check_vehicle <- function(df){
   df %>%
     select(crash_id = crash_id, 
            vehicle_num = vehicle_num, 
+           vehicle_year = vehicle_year,
            travel_direction_id = travel_direction_id, 
            event_1_id = event_sequence_1_id, 
            event_2_id = event_sequence_2_id, 
