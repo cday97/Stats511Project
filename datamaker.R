@@ -19,7 +19,7 @@ crashprep <- function() {
 #build severity dataset
 buildSeverity <- function(crashData) {
   crashData %>% 
-    select(9,12,10,11,13,14) %>%
+    select(3,6) %>%
     mutate(collisionType = case_when(
       manner_collision_id == 1 ~ "1 Angle",
       manner_collision_id == 2 ~ "2 FrontToRear",
@@ -32,9 +32,19 @@ buildSeverity <- function(crashData) {
       manner_collision_id == 96 ~ "96 SingleVeh",
       manner_collision_id == 97 ~ "97 Other",
       manner_collision_id %in% c(99,89) ~ "99 Unknown"
-    )) %>%
-    select(1,2,7)
+    ))
 }
+
+buildSeveritySummary <- function(severityData) {
+  severityData %>%
+    group_by(collisionType) %>% 
+    summarize(
+      mean = mean(crash_severity_id),
+      sd = sd(crash_severity_id)
+    )
+}
+
+
 
 fun_mean <- function(x){return(round(data.frame(y=mean(x),label=mean(x,na.rm=T)),digit=2))}
 

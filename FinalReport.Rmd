@@ -1,44 +1,16 @@
 ---
 title: "What factors are strong indicators of severe vehicle crashes on Utah roads?"
-author: "Chris Day"
+author: "Tomas, Chris, and Gillian"
 date: "12/2/2021"
 output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 library(tidyverse)
+library(knitr)
+library(kableExtra)
 source("datamaker.R")
 source("crashprep.R")
-```
-
-```{r boxplot, message = FALSE, warning = FALSE}
-crash <- crashprep()
-severity <- buildSeverity(crash) %>% filter(manner_collision_id != 89)
-makeBoxPlot(severity)
-```
-
-```{r means, message = FALSE, warning = FALSE}
-severitySummary <- buildSeverity(crash) %>% 
-  group_by(collisionType) %>% 
-  summarize(mean = mean(crash_severity_id))
-severitySummary
-```
-
-
-```{r}
-anovaModel <- aov(crash_severity_id ~ collisionType, data = severity)
-summary(anovaModel)
-```
-
-```{r tukeyTime, echo=FALSE, message=FALSE, warning=FALSE}
-tukey <- TukeyHSD(anovaModel)
-tukey
-```
-
-```{r}
-totalSev <- crash %>%  filter(manner_collision_id != 89) %>%
-  group_by(crash_severity_id, manner_collision_id) %>% 
-  summarize(sum = sum(crash_severity_id))
 ```
 
 # Question
@@ -55,7 +27,58 @@ Gillian
 Gillian
 
 # Numerical Results
-Chris
+We conducted an array of statistical tests to help us determine if the
+severity of a crash can be directly associated with the manner of the collision that occured during a crash. One cannot simply assume that certain types of collisions will automatically result in certain severity. As stated in the Statistical Method section, the tests we conducted include a comparison of means and standard deviations, a boxplot, an ANOVA test, and a Tukey Kramer analysis. The numerical results of each of these tests are displayed in the following subsections.
+
+### Comparison of Means and Standard Deviations
+
+The first result that we computed is the means and the standard deviation of the crash severity of every manner of collision. The results this computation is displayed in Table 1. Although a simple table, it shows the numerical results of the first analysis that was conducted.
+
+```{r meansSetup, echo = FALSE, , message = FALSE, warning = FALSE}
+crash <- crashprep()
+severity <- buildSeverity(crash)
+severitySummary <- buildSeveritySummary(severity)
+```
+
+```{r meansT, echo = FALSE}
+kable(severitySummary, align = "c", booktabs = T, caption = "Comparions of Means and Standard Deviations")
+```
+
+An interesting result found in the table is the mean of 3 HeadOn. The mean of this collision type is 1.92, which is much higher than the rest of the collision types. Unfortunately, the standard deviation of this result is also the highest. 7 RearToSide, 8 RearToRear, 4 SideSwipeSame, and 6 ParkedVeh all have values between 1.1 and 1.3, which forms the lowest severity value means.  
+
+### Boxplot Analysis
+
+The second numerical results is a box plot displaying the mean, 25th percentile, 75th percentile, and outliers of each of the manner of collisions in respect to crash severity. This result shows a more detailed version of Table 1 except it is displayed in a more visual manner. This time, it is clearly seen that HeadOn collisions, for example, have a higher mean crash severity than all other crash types. The boxplot is seen in Figure 1. 
+
+```{r boxplot, fig.cap="A boxplot analysis of Crash Severity by Collision ID.", echo = FALSE, warning = FALSE, message = FALSE}
+makeBoxPlot(severity)
+```
+
+It is important to note that Crash Severity only exists as an integer between 1 and 5. For this reason, no values exists in between integer values. Although, the mean and standard devations do include decimal values. 
+
+### ANOVA Table
+
+The third numerical analysis is the ANOVA analysis. This was conducted as a way to statistically determine if a difference in means existed. 
+
+```{r anova, warning = FALSE, message = FALSE}
+anovaModel <- aov(crash_severity_id ~ collisionType, data = severity)
+summary(anovaModel)
+```
+
+The numerical results of the ANOVA Table includes 10 degrees of freedom, an F-statistic of 2363, and a p-value of less than 2e-16. This means that at least one of the manner of collisions mean values differs from at least one other manner of collision mean value. 
+
+### Tukey Kramer
+
+The last numerical analysis is the results of the Tukey Kramer test. This table displays the result of every combination of manner of collision, and if their means differ or not. The results of this test can be seen below. 
+
+```{r tukeyTime, echo=FALSE, message=FALSE, warning=FALSE}
+tukey <- TukeyHSD(anovaModel)
+tukey
+```
+
+The numerical results of this test include the confidence intervals as well as the p-value for each combination of manner of collision. More specifically, all combinations that result in a p adj value of 0, or less than 0.05 are to be considered statistically significant. In other words, the null-hypothesis is rejected and there is substantial evidence that the severity level means differ between the two manner of collisions. An exampe of this is HeadOn collision types. The mean severity level of HeadOn collisions is significantly different than all other collision type mean severity levels. Combinations of values greater than 0.05 show that there is no difference between mean severity levels.
+
+Clearly, multiple manner of collision combinations do in fact have sufficient evidence showing that crash severity differs between the two. In addition, many manner of collision combinations do not differ between each other, showing no evidence that crash severity differs between the two. Fortunately, a more inferential conclusions is interpretted from the numerical analysis in the following section. 
 
 # Inferential Conclusions
 Chris
