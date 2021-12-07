@@ -81,8 +81,31 @@ The numerical results of this test include the confidence intervals as well as t
 Clearly, multiple manner of collision combinations do in fact have sufficient evidence showing that crash severity differs between the two. In addition, many manner of collision combinations do not differ between each other, showing no evidence that crash severity differs between the two. Fortunately, a more inferential conclusions is interpretted from the numerical analysis in the following section. 
 
 # Inferential Conclusions
-Chris
 
+The inferential conclusions from our analysis can be interpreted through the numerical results that were presented. Specifically, the mean and standard deviation table, box plot, ANOVA table, and Tukey Kramer results provide sufficient evidence to formulate inferential conclusions. 
+
+Below, three specific inferential conclusions drawn from the data are stated and then explained. In addition, an overarching conclusion is drawn.
+
+### 1. On average, some collision types produce more severe crashes.
+The first conclusion that we draw is that on average, specific collision types produce more severe crashes than other collision types. By looking at Table 1 and the Figure 1, we see that Head On, Angle, and Single Vehicle collisions seem to have a higher crash severity mean than all the other collision types. Head On collisions in particular seem to have the highest average crash severity level. This means that in the data that was collected, crash intensity was on average highest amoung Head On data points. 
+
+This inference does not conclude that Head On collisions are always the most severe. By analyzing the Box Plot data, we see that all collision types except Rear To Side collisions can produce crash severity of level 5. It does conclude, however, that the average severity of Head On, Angle, and Single Vehicle collisions are higher than all other collision types. 
+
+This conclusion is backed up by the results in the ANOVA table and the Tukey Kramer test. The ANOVA table proved that a difference in means existed. The Tukey Kramer tests displayed overwhelming evidence that the mean of Head On collisions and Angle collisions is different than all other collision types. For the most part, Single Vehicle crashes also showed a difference in means from other collision types. The p-value of less than 0.05 provides this evidence.
+
+### 2. Certain collision types can be more likely to produce a more severe crash.
+
+Another inference that is made is that Head On, Angle, and Single Vehicle crashes will more likely produce a more severe crash than a collision involving a Parked Vehicle, Rear to Side, or Rear to Rear type. The mean severitys between all of these combinations is significanly different. This is shown in the p-values displayed in the Tukey Kramer test. In addition, Head On, Angle, and Single Vehicle crashes have the highest average crash severity whereas Parked Vehicle, Rear to Side, and Rear to Rear collisions have the lowest average crash severity. This is shown in the Box Plots and in Table 1.
+
+### 3. On average, some collision types produce less severe crashes.
+
+Although very similar to the first conclusional inference that was made, here we infer that on average, specific collision types produce less severe crashes than other collision types. Again, by looking at Table 1 and Figure 1, we see that Parked Vehicle, Rear to Rear, and Rear to Side collisions seem to have lower crash severity means than all the other collision types. Rear to Side collisions in particular seem to have the lowest average crash severity level. This means taht in the data that was collected, crash intensity was on average lowest amoung Rear to Side data points.
+
+This inference does not conclude that Rear to Side collisions are always the least severe. It does conclude, however, that the average severity of Parked Vehicle, Rear to Rear, and Rear to Side collisions are lower than all other collision types. Similar to the first conclusion, this inference is backed up by the results in the ANOVA table and the Tukey Kramer test.
+
+### A connection exists between manner of collision and crash severity.
+
+The overarching conclusion we make, however, is that *a connection exists between manner of collision and crash severity.* Drawing from specific conclusions, we see that on average, some collision types produce more sever crashes and some collision types produce less severe crashes. We also see that certain collision types are more likely to produce a more severe crash. Overall though, it is clear to see that some sort of valid connection exists between collision type and crash severity. This conclusion is backed up specifically by the results of the ANOVA table. There is a difference in crash severity means, and no debate exists about that.
 
 # Additional Discussion
 Tommy
