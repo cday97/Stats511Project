@@ -61,7 +61,7 @@ The third piece of information to know is the *F-test*. The F-test is summarized
 An example of an ANOVA table is shown in Figure 3.
 
 **Figure 3: ANOVA table outputs and labels**
-```{r anova, echo=FALSE, message=FALSE, warning=FALSE}
+```{r anova1, echo=FALSE, message=FALSE, warning=FALSE}
 anovaEx <- load.image("images/AnovaExample.JPG")
 plot(anovaEx)
 ```
