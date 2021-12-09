@@ -30,18 +30,18 @@ A box plot, also called a box-and-whisker plot, is defined in our textbook as "a
 The graph gives an uncluttered view of the center, the spread, and the skewness of a distribution and indicates the presence of unusually small or large values, known as outliers. The spread can be seen by the tails of the data which are represented by whiskers on the box plot. The width of the box can also indicate the spread of the data. Skewness of data can be detected by a line in the box which indicates the median of the data. A data point is considered an outlier when it is more than 1.5 IQRs away from the box. An outlier is represented by a dot on a boxplot. Examples of how boxplots can visually represent different distributions of data are shown in Figures 1 and 2.
 
 **Figure 1: Boxplots visualizing skewed data**
-```{r boxplot1, echo=FALSE, message=FALSE, warning=FALSE}
+```{r boxplot1, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 library(imager)
 skewness <- load.image("images/Boxplot skewness.png")
-plot(skewness)
+plot(skewness, axes = F)
 ```
 
 In Figure 1, all of the spreads are pretty similar (the width of the boxes are about the same and the whiskers are all at the same values of 0 and 400). Also, no outliers are shown. Those elements of box plots are better shown in Figure 2.
 
 **Figure 2: Boxplots visualizing different spreads and outliers within data**
-```{r boxplot2, echo=FALSE, message=FALSE, warning=FALSE}
+```{r boxplot2, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 outliers <- load.image("images/Boxplot outliers and spreads.png")
-plot(outliers)
+plot(outliers, axes = F)
 ```
 
 We can see from Figure 2 that virginica flowers have an outlier. Furthermore, setosa has the smallest spread out of all three kinds of flowers. 
@@ -61,9 +61,9 @@ The third piece of information to know is the *F-test*. The F-test is summarized
 An example of an ANOVA table is shown in Figure 3.
 
 **Figure 3: ANOVA table outputs and labels**
-```{r anova1, echo=FALSE, message=FALSE, warning=FALSE}
+```{r anova1, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
 anovaEx <- load.image("images/AnovaExample.JPG")
-plot(anovaEx)
+plot(anovaEx, axes = F)
 ```
 
 Using the one-way ANOVA method in our analysis will allow us to see if the mean severity of crash differs between any group of manner of collisions.
@@ -159,7 +159,7 @@ Although very similar to the first conclusional inference that was made, here we
 
 This inference does not conclude that Rear to Side collisions are always the least severe. It does conclude, however, that the average severity of Parked Vehicle, Rear to Rear, and Rear to Side collisions are lower than all other collision types. Similar to the first conclusion, this inference is backed up by the results in the ANOVA table and the Tukey Kramer test.
 
-### A connection exists between manner of collision and crash severity.
+### 4. A connection exists between manner of collision and crash severity.
 
 The overarching conclusion we make, however, is that *a connection exists between manner of collision and crash severity.* Drawing from specific conclusions, we see that on average, some collision types produce more sever crashes and some collision types produce less severe crashes. We also see that certain collision types are more likely to produce a more severe crash. Overall though, it is clear to see that some sort of valid connection exists between collision type and crash severity. This conclusion is backed up specifically by the results of the ANOVA table. There is a difference in crash severity means, and no debate exists about that.
 
