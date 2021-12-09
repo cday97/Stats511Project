@@ -1,6 +1,6 @@
 ---
-title: "What factors are strong indicators of severe vehicle crashes on Utah roads?"
-author: "Tomas, Chris, and Gillian"
+title: "Is There a Correlation Between Manner of Collision and Severity of a Crash?"
+author: "Tomas Barriga, Chris Day, and Gillian Martin"
 date: "12/2/2021"
 output: pdf_document
 ---
@@ -14,14 +14,16 @@ source("crashprep.R")
 ```
 
 # Question
-Tommy
+
+Is there a correlation between manner of collision and severity of a crash? For instance, are head-on crashes more likely to be severe crashes than a sideswipe crash?
 
 # Study Design
-Tommy
+
+Crash data was collected from UDOT for the years 2014 to 2021 and provides information about the conditions in which the crash occurred. These conditions include roadway, weather, lighting, pavement, junction, work zone, horizontal and vertical curves, manner of collision, and first harmful event, all of which are recorded with various numerical codes. It also provides information on number of vehicles involved and the severity of the crash which is ranked on a scale from 1 to 5. 1 being property damage only, and 5 being a fatal crash. We will primarily be looking at the correlation between manner of collision and severity of a crash. We will use R to analyze this data statistically.
 
 # Statistical Methods
 
-For our project, we used three statistical methods to analyze the data: boxplots, ANOVA, and the Tukey Kramer method. The information each of those methods contain is further discussed below. It is important to note that the actual implementation of these methods is shown in the "Numerical Results" section. This section simply gives background information and context about each method.
+For our project, we used three statistical methods to analyze the data: boxplots, ANOVA, and the Tukey-Kramer method. The information each of those methods contain is further discussed below. It is important to note that the actual implementation of these methods is shown in the "Numerical Results" section. This section simply gives background information and context about each method.
 
 ### Boxplot Method
 
@@ -65,7 +67,7 @@ plot(anovaEx, axes = F)
 
 Using the one-way ANOVA method in our analysis will allow us to see if the mean severity of crash differs between any group of manner of collisions.
 
-### Tukey Kramer Method
+### Tukey-Kramer Method
 
 The Tukey-Kramer procedure, as the textbook states, utilizes "the unique structure of the multiple comparisons problem by selecting a multiplier from the studentized range distributions rather than from the t-distributions" (Ramsey/Schafer, 2013, p.161). In simpler terms, it compares the means of every treatment to the means of every other treatment and identifies any difference between two means that is greater than the expected standard error. This is useful for our question because it will tell us specifically which manners of collision have statistically different means of severity.
 
@@ -80,7 +82,7 @@ This is why our group also did a post-hoc test, in this case Tukey-Kramer. The p
 # Numerical Results
 
 We conducted an array of statistical tests to help us determine if the
-severity of a crash can be directly associated with the manner of the collision that occured during a crash. One cannot simply assume that certain types of collisions will automatically result in certain severity. As stated in the Statistical Method section, the tests we conducted include a comparison of means and standard deviations, a boxplot, an ANOVA test, and a Tukey Kramer analysis. The numerical results of each of these tests are displayed in the following subsections.
+severity of a crash can be directly associated with the manner of the collision that occured during a crash. One cannot simply assume that certain types of collisions will automatically result in certain severity. As stated in the Statistical Method section, the tests we conducted include a comparison of means and standard deviations, a boxplot, an ANOVA test, and a Tukey-Kramer analysis. The numerical results of each of these tests are displayed in the following subsections.
 
 ### Comparison of Means and Standard Deviations
 
@@ -119,9 +121,9 @@ summary(anovaModel)
 
 The numerical results of the ANOVA Table includes 10 degrees of freedom, an F-statistic of 2363, and a p-value of less than 2e-16. This means that at least one of the manner of collisions mean values differs from at least one other manner of collision mean value. 
 
-### Tukey Kramer
+### Tukey-Kramer
 
-The last numerical analysis is the results of the Tukey Kramer test. This table displays the result of every combination of manner of collision, and if their means differ or not. The results of this test can be seen below. 
+The last numerical analysis is the results of the Tukey-Kramer test. This table displays the result of every combination of manner of collision, and if their means differ or not. The results of this test can be seen below. 
 
 ```{r tukeyTime, echo=FALSE, message=FALSE, warning=FALSE}
 tukey <- TukeyHSD(anovaModel)
@@ -134,7 +136,7 @@ Clearly, multiple manner of collision combinations do in fact have sufficient ev
 
 # Inferential Conclusions
 
-The inferential conclusions from our analysis can be interpreted through the numerical results that were presented. Specifically, the mean and standard deviation table, box plot, ANOVA table, and Tukey Kramer results provide sufficient evidence to formulate inferential conclusions. 
+The inferential conclusions from our analysis can be interpreted through the numerical results that were presented. Specifically, the mean and standard deviation table, box plot, ANOVA table, and Tukey-Kramer results provide sufficient evidence to formulate inferential conclusions. 
 
 Below, three specific inferential conclusions drawn from the data are stated and then explained. In addition, an overarching conclusion is drawn.
 
@@ -144,21 +146,186 @@ The first conclusion that we draw is that on average, specific collision types p
 
 This inference does not conclude that Head On collisions are always the most severe. By analyzing the Box Plot data, we see that all collision types except Rear To Side collisions can produce crash severity of level 5. It does conclude, however, that the average severity of Head On, Angle, and Single Vehicle collisions are higher than all other collision types. 
 
-This conclusion is backed up by the results in the ANOVA table and the Tukey Kramer test. The ANOVA table proved that a difference in means existed. The Tukey Kramer tests displayed overwhelming evidence that the mean of Head On collisions and Angle collisions is different than all other collision types. For the most part, Single Vehicle crashes also showed a difference in means from other collision types. The p-value of less than 0.05 provides this evidence.
+This conclusion is backed up by the results in the ANOVA table and the Tukey-Kramer test. The ANOVA table proved that a difference in means existed. The Tukey-Kramer tests displayed overwhelming evidence that the mean of Head On collisions and Angle collisions is different than all other collision types. For the most part, Single Vehicle crashes also showed a difference in means from other collision types. The p-value of less than 0.05 provides this evidence.
 
 ### 2. Certain collision types can be more likely to produce a more severe crash.
 
-Another inference that is made is that Head On, Angle, and Single Vehicle crashes will more likely produce a more severe crash than a collision involving a Parked Vehicle, Rear to Side, or Rear to Rear type. The mean severitys between all of these combinations is significanly different. This is shown in the p-values displayed in the Tukey Kramer test. In addition, Head On, Angle, and Single Vehicle crashes have the highest average crash severity whereas Parked Vehicle, Rear to Side, and Rear to Rear collisions have the lowest average crash severity. This is shown in the Box Plots and in Table 1.
+Another inference that is made is that Head On, Angle, and Single Vehicle crashes will more likely produce a more severe crash than a collision involving a Parked Vehicle, Rear to Side, or Rear to Rear type. The mean severitys between all of these combinations is significanly different. This is shown in the p-values displayed in the Tukey-Kramer test. In addition, Head On, Angle, and Single Vehicle crashes have the highest average crash severity whereas Parked Vehicle, Rear to Side, and Rear to Rear collisions have the lowest average crash severity. This is shown in the Box Plots and in Table 1.
 
 ### 3. On average, some collision types produce less severe crashes.
 
 Although very similar to the first conclusional inference that was made, here we infer that on average, specific collision types produce less severe crashes than other collision types. Again, by looking at Table 1 and Figure 4, we see that Parked Vehicle, Rear to Rear, and Rear to Side collisions seem to have lower crash severity means than all the other collision types. Rear to Side collisions in particular seem to have the lowest average crash severity level. This means taht in the data that was collected, crash intensity was on average lowest amoung Rear to Side data points.
 
-This inference does not conclude that Rear to Side collisions are always the least severe. It does conclude, however, that the average severity of Parked Vehicle, Rear to Rear, and Rear to Side collisions are lower than all other collision types. Similar to the first conclusion, this inference is backed up by the results in the ANOVA table and the Tukey Kramer test.
+This inference does not conclude that Rear to Side collisions are always the least severe. It does conclude, however, that the average severity of Parked Vehicle, Rear to Rear, and Rear to Side collisions are lower than all other collision types. Similar to the first conclusion, this inference is backed up by the results in the ANOVA table and the Tukey-Kramer test.
 
 ### 4. A connection exists between manner of collision and crash severity.
 
 The overarching conclusion we make, however, is that *a connection exists between manner of collision and crash severity.* Drawing from specific conclusions, we see that on average, some collision types produce more sever crashes and some collision types produce less severe crashes. We also see that certain collision types are more likely to produce a more severe crash. Overall though, it is clear to see that some sort of valid connection exists between collision type and crash severity. This conclusion is backed up specifically by the results of the ANOVA table. There is a difference in crash severity means, and no debate exists about that.
 
 # Additional Discussion
-Tommy
+The application of this study would be helping UDOT achieve their goal of Zero Fatalities on Utah Roadways and creating safer roadways to prevent manner of collisions that may result in more severe or fatal crashes. If roadway data was added into this statistical analysis, you could potentially analyze specific segments or intersections and the crashes in them.
+
+Alternative analysis methods may include looking at other roadway conditions that may effect severity of a crash just as roadway surface condition, weather conditions, lighting conditions. To do this, we could use two-way ANOVA or MANOVA tables to simultaneously analyze the effects of each of these conditions.
+
+Limitations of the study include that a causal relationship cannot be introduced between the data because of the stochastic nature of crash data and its unpredictability. Another limitation includes human error in data collection because data is not self reported; it is recorded by first responders. The low number of fatal crashes compared to non fatal crashes also makes it difficult to properly analyze the data at hand. 
+
+# Division of Tasks
+
+Tommy- Data Collection, Problem Statement, Additional Discussion, Tukey Code
+
+Gillian- Statistical Methods, Issues, ANOVA Code
+
+Chris- Numerical Results, Inferential Conclusions, BoxPlot Code
+
+# Appendix
+For more information on the design of this project, please see this github page: https://github.com/cday97/Stats511Project.
+
+Below are the scripts that correspond to the datamaker.R script
+```{r}
+#build the crash dataset
+crashprep <- function() {
+  location <- read_csv("data/Crash_Data_14-20.csv")
+  vehicle <- read_csv("data/Vehicle_Data_14-20.csv")
+  rollups <- read_csv("data/Rollups_14-20.csv")
+  
+  location <- check_location(location)
+  vehicle <- check_vehicle(vehicle)
+  rollups <- check_rollups(rollups)
+  
+  crash <- left_join(location,rollups,by='crash_id')
+  crash <- left_join(crash,vehicle,by='crash_id')
+  rm("location","vehicle","rollups")
+  
+  crash
+}
+```
+
+```{r}
+#build severity dataset
+buildSeverity <- function(crashData) {
+  crashData %>% 
+    select(3,6) %>%
+    mutate(collisionType = case_when(
+      manner_collision_id == 1 ~ "1 Angle",
+      manner_collision_id == 2 ~ "2 FrontToRear",
+      manner_collision_id == 3 ~ "3 HeadOn",
+      manner_collision_id == 4 ~ "4 SideSwipeSame",
+      manner_collision_id == 5 ~ "5 SideSwipeOpp",
+      manner_collision_id == 6 ~ "6 ParkedVeh",
+      manner_collision_id == 7 ~ "7 RearToSide",
+      manner_collision_id == 8 ~ "8 RearToRear",
+      manner_collision_id == 96 ~ "96 SingleVeh",
+      manner_collision_id == 97 ~ "97 Other",
+      manner_collision_id %in% c(99,89) ~ "99 Unknown"
+    ))
+}
+```
+
+```{r}
+buildSeveritySummary <- function(severityData) {
+  severityData %>%
+    group_by(collisionType) %>% 
+    summarize(
+      mean = mean(crash_severity_id),
+      sd = sd(crash_severity_id)
+    )
+}
+```
+
+```{r}
+fun_mean <- function(x){return(round(data.frame(y=mean(x),label=mean(x,na.rm=T)),digit=2))}
+
+makeBoxPlot <- function(severity){
+  ggplot(severity) +
+    aes(x = as.factor(manner_collision_id), y = as.numeric(crash_severity_id)) +
+    geom_boxplot(aes(fill = collisionType)) + 
+    stat_summary(fun.y = mean, geom="crossbar",colour="blue", size=.5) +
+    stat_summary(fun.data = fun_mean, geom="text", vjust=-0.7) + 
+    labs(x = "Collision ID", y = "Crash Severity") +
+    theme_bw()
+}
+```
+
+Below are the functions relating to the crashprep.R script.
+```{r}
+# The following is the functions that prepare the crash data to be joined
+
+# Keeps the following columns from the location file
+check_location <- function(df){
+  df %>%
+    select(crash_id = crash_id, 
+           crash_datetime = crash_datetime, 
+           crash_severity_id = crash_severity_id, 
+           light_condition_id = light_condition_id, 
+           weather_condition_id = weather_condition_id, 
+           manner_collision_id = manner_collision_id,
+           roadway_surf_condition_id = roadway_surf_condition_id,
+           roadway_junct_feature_id = roadway_junct_feature_id, 
+           roadway_contrib_circum_id = roadway_contrib_circum_id)
+}
+```
+
+```{r}
+# Keeps the following columns from the vehicle file
+check_vehicle <- function(df){
+  df %>%
+    select(crash_id = crash_id, 
+           vehicle_num = vehicle_num, 
+           vehicle_year = vehicle_year,
+           travel_direction_id = travel_direction_id, 
+           event_1_id = event_sequence_1_id, 
+           event_2_id = event_sequence_2_id, 
+           event_3_id = event_sequence_3_id, 
+           event_4_id = event_sequence_4_id,
+           most_harmful_event_id = most_harmful_event_id, 
+           vehicle_maneuver_id = vehicle_maneuver_id)
+}
+```
+
+```{r}
+# Keeps the following columns from the rollups file
+check_rollups <- function(df){
+  df %>%
+    select(crash_id = crash_id, 
+           number_fatalities = number_fatalities, 
+           number_four_injuries = number_four_injuries,
+           number_three_injuries = number_three_injuries, 
+           number_two_injuries = number_two_injuries,
+           number_one_injuries = number_one_injuries,
+           pedalcycle_involved = pedalcycle_involved, 
+           pedalcycle_involved_level4_tot = pedalcycle_involved_level4_tot,	
+           pedalcycle_involved_fatal_tot = pedalcycle_involved_fatal_tot,
+           pedestrian_involved = pedestrian_involved,	
+           pedestrian_involved_level4_tot = pedestrian_involved_level4_tot,	
+           pedestrian_involved_fatal_tot = pedestrian_involved_fatal_tot,
+           motorcycle_involved = motorcycle_involved,	
+           motorcycle_involved_level4_tot = motorcycle_involved_level4_tot,	
+           motorcycle_involved_fatal_tot = motorcycle_involved_fatal_tot,
+           unrestrained = unrestrained, 
+           dui = dui, 
+           aggressive_driving = aggressive_driving,	
+           distracted_driving = distracted_driving,	
+           drowsy_driving = drowsy_driving,	
+           speed_related = speed_related,
+           intersection_related = intersection_related,	
+           adverse_weather = adverse_weather,	
+           adverse_roadway_surf_condition = adverse_roadway_surf_condition,	
+           roadway_geometry_related = roadway_geometry_related,
+           wild_animal_related = wild_animal_related,	
+           domestic_animal_related = domestic_animal_related,	
+           roadway_departure = roadway_departure,	
+           overturn_rollover = overturn_rollover,	
+           commercial_motor_veh_involved = commercial_motor_veh_involved,	
+           interstate_highway = interstate_highway,	
+           teen_driver_involved = teen_driver_involved,	
+           older_driver_involved = older_driver_involved,	
+           route_type = route_type,	
+           night_dark_condition = night_dark_condition,	
+           single_vehicle = single_vehicle,	
+           train_involved = train_involved,	
+           railroad_crossing = railroad_crossing,
+           transit_vehicle_involved = transit_vehicle_involved,	
+           collision_with_fixed_object = collision_with_fixed_object)
+}
+```
+
